@@ -8,15 +8,20 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
-    
-    <%= form_tag articles_path, :method => 'get' do %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search" %>
+  <div class="header">
+
+    <%= link_to 'back', root_path %>
+    <% if current_user %>
+    <%= link_to 'log out', logout_path, method: :delete %>
+    <% else %>
+    <%= link_to 'login', login_path %>
+    <%= link_to 'sign up', signup_path %>
     <% end %>
 
-  </header>
+  </div>
   <body>
     <%= yield %>
+      <%= debug(params) if Rails.env.development? %>
+
   </body>
 </html>

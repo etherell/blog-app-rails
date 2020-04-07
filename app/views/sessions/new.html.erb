@@ -1,0 +1,16 @@
+<!-- Форма входа для User -->
+
+<div class="form">
+  <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Log in" %>
+   <% end %>
+</div>
+
+<p>New user? <%= link_to "Please, sign up", signup_path %></p>

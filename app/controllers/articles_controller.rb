@@ -1,22 +1,28 @@
 class ArticlesController < ApplicationController
 http_basic_authenticate_with name: "admin", password: "password", except: [:index, :show]
-
+	
+	# Сочетание действия Index и Поиска в одном
 	def index
 		@articles = Article.where(["title LIKE ?","%#{params[:search]}%"])
 	end
 
+	# Действие для вывода одной статьи
 	def show
 		@article = Article.find(params[:id])
 	end
 
+	# Действие которое выводит форму для создания статей
 	def new
 		@article = Article.new
 	end
 
+	# Действие которое выводит форму для редактироания статьи
 	def edit
 		@article = Article.find(params[:id])
 	end
 
+	# Действие которое создаёт новую статью с заполненными параметрами, которые принимаются из приватного метода
+	# HTTP - POST
 	def create
 	 	@article = Article.new(article_params)
 	 	
@@ -27,6 +33,7 @@ http_basic_authenticate_with name: "admin", password: "password", except: [:inde
 	 	end
 	end 
 
+	# Действие обновляющее статью (HTTP - PATCH/PUT)
 	def update
 		@article = Article.find(params[:id])
 
@@ -37,6 +44,7 @@ http_basic_authenticate_with name: "admin", password: "password", except: [:inde
 		end
 	end
 
+	# Действие удаляющее статью (HTTP - DELETE)
 	def destroy
 		@article = Article.find(params[:id])
 		@article.destroy
@@ -44,6 +52,7 @@ http_basic_authenticate_with name: "admin", password: "password", except: [:inde
 		redirect_to articles_path
 	end
 
+	# Приватный метод который передаёт параметры
 	private
 	def article_params
     	params.require(:article).permit(:title, :text)

@@ -1,3 +1,12 @@
+ <header>
+    
+    <%= form_tag articles_path, :method => 'get' do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search" %>
+    <% end %>
+<!-- Страница вывода всех статей -->
+ </header>
+
 <h1> Listing Articles </h1>
 
 <table>
