@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
 http_basic_authenticate_with name: "admin", password: "password", except: [:index, :show]
+
 	def index
-		@articles = Article.all
+		@articles = Article.where(["title LIKE ?","%#{params[:search]}%"])
 	end
 
 	def show
