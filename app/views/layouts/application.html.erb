@@ -11,12 +11,9 @@
   <div class="header">
 
     <%= link_to 'back', root_path %>
-    <% if current_user %>
     <%= link_to 'log out', logout_path, method: :delete %>
-    <% else %>
     <%= link_to 'login', login_path %>
     <%= link_to 'sign up', signup_path %>
-    <% end %>
 
   </div>
   <body>

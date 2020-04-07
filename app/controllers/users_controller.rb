@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 		if @user.save
 			redirect_to login_path
 		else
-			render 'new'
+			redirect_to '/signup'
 		end
 	end
 
@@ -23,6 +23,6 @@ class UsersController < ApplicationController
 	# Приватное действие которое получает параметры пользователя
 	private
 	def user_params
-		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+		params.require(:user).permit(:name, :email, :password)
 	end
 end
